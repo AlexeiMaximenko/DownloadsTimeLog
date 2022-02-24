@@ -54,7 +54,7 @@ namespace DownloadsTimeLog
         {
                 if (counter < 0)
                 {
-                    mainTimer.Start();
+                    mainTimer.Stop();
                     Download(url, fileName);
                     counter = 30;
                     timerCounter.Text = counter.ToString();
@@ -95,6 +95,7 @@ namespace DownloadsTimeLog
                 Directory.CreateDirectory($"{path}/log/");
                 var log = new Logger($"{path}/log/errorLog.txt");
                 log.Logging($"{DateTime.UtcNow.ToString("yyyy/MM/dd HH:mm:ss.fff", CultureInfo.InvariantCulture)} {ex.Message}");
+                mainTimer.Start();
             }
         }
     }
